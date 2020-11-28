@@ -18,7 +18,8 @@ bool Substring(char *string , char search[])
     p = string;
     q = search;
 
-    for(i = 0; string[i] != '\0'; i++ )
+    // for(i = 0; string[i] != '\0'; i++ )
+    while(*p != '\0')
     {
         if(*p == *q)
         {
