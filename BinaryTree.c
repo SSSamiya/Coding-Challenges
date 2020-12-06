@@ -67,11 +67,50 @@ void Postorder(struct node *root)
         return;
     
 }
-
+struct node *Search(struct node *root, int key)
+{
+    if(root != NULL)
+    {
+        if(key == root->data)
+        {
+            return root;
+        }
+        else if(key < root->data)
+        {
+            return Search(root->left, key);
+        }
+        else
+        {
+            return Search(root->right, key);
+        }
+    }
+    else
+    {
+        return 0;
+    }
+    
+}
+struct node *Replace(struct node **root, int key)
+{
+    struct node *temp;
+    int newValue;
+    temp = Search(root, key);
+    if(temp != NULL)
+    {
+        printf("Enter new value : ");
+        scanf("%d", &newValue);
+        temp->data = newValue;
+    }
+    else
+    {
+        printf("Element not Present\n");
+    }
+}
 int main()
 {
-    int value;
+    int value, key;
     struct node *root = NULL;
+    struct node *temp;
     printf("Enter Data for  Node : ");
     scanf("%d", &value);
 
@@ -86,5 +125,17 @@ int main()
     Inorder(root);
     printf("Postorder Traversal : \n");
     Postorder(root);
+
+    printf("Enter Element to be Searched : ");
+    scanf("%d", &key);
+    temp = Search(root, key);
+    if(temp != 0)
+        printf("Element Present\n");
+    else
+        printf("Element not Present\n");
+    
+    printf("Enter Element to be Replaced : ");
+    scanf("%d", &key);
+    root = Replace(&root, key);
     return 0;
 }
