@@ -16,7 +16,7 @@ struct node* CreateNode(int value)
 }
 void insert(struct node **root, int value)
 {
-    if(*root == 0)
+    if(*root == NULL)
     {
         *root = CreateNode(value);
     }
